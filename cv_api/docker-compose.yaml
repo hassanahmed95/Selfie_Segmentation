@@ -1,0 +1,19 @@
+version: "2"
+
+services:
+
+  kyc-sdk:
+    image: javediqbal/kyc-sdk-1:latest
+    restart: always
+    ports:
+      - 8000:8000
+    container_name: kyc-sdk
+    volumes:
+     - "./cv_api:/app"
+    environment:
+     - PYTHONUNBUFFERED=0
+    working_dir: /app
+    command: python -u manage.py runserver 0.0.0.0:8000
+    logging:
+      options:
+        max-size: 50m
